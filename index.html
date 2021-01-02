@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>iframe Event</title>
+</head>
+<body>
+
+    <p>Send Message: <button id="error">error</button></p>
+    <p>Send Message: <button id="success">success</button></p>
+    <p>Send Message: <button id="retry">retry</button></p>
+
+    <script>
+        function bindEvent(element, eventName, eventHandler) {
+            if (element.addEventListener) {
+                element.addEventListener(eventName, eventHandler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + eventName, eventHandler);
+            }
+        }
+        var sendMessage = function (msg) {
+            window.parent.postMessage(msg, '*');
+        };
+
+        var errorBtn = document.getElementById('error'),
+            successBtn = document.getElementById('success'),
+            retryBtn = document.getElementById('retry');
+
+        bindEvent(errorBtn, 'click', function (e) {
+            sendMessage('error');
+        });
+        bindEvent(successBtn, 'click', function (e) {
+            sendMessage('success');
+        });
+        bindEvent(retryBtn, 'click', function (e) {
+            sendMessage('retry');
+        });
+    </script>
+</body>
+</html>
