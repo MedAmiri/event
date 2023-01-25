@@ -9,7 +9,8 @@
     <p>Send Message: <button id="error">error</button></p>
     <p>Send Message: <button id="success">success</button></p>
     <p>Send Message: <button id="retry">retry</button></p>
-
+    <p>Send Message: <button id="show">show popup</button></p>
+    
     <script>
         function bindEvent(element, eventName, eventHandler) {
             if (element.addEventListener) {
@@ -24,7 +25,8 @@
 
         var errorBtn = document.getElementById('error'),
             successBtn = document.getElementById('success'),
-            retryBtn = document.getElementById('retry');
+            retryBtn = document.getElementById('retry'),
+            showPopupBtn = document.getElementById('show');
 
         bindEvent(errorBtn, 'click', function (e) {
             sendMessage('FAILURE');
@@ -34,6 +36,9 @@
         });
         bindEvent(retryBtn, 'click', function (e) {
             sendMessage('STOP');
+        });
+        bindEvent(showPopupBtn, 'click', function (e) {
+            sendMessage('SHOW_POPUP_NAME');
         });
     </script>
 </body>
